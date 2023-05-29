@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+<title>Webcam Example</title>
+<style>
+#video {
+width: 100%;
+}
+#button {
+padding: 10px;
+background-color: #4CAF50;
+border: none;
+color: white;
+font-size: 16px;
+cursor: pointer;
+border-radius: 5px;
+}
+#button:focus {
+outline: none;
+}
+</style>
+</head>
+ 
+<body>
+<video id="video" autoplay></video>
+<br>
+<button id="button">Open Front Camera</button>
+ 
+<script>
+const video = document.getElementById("video");
+const button = document.getElementById("button");
+ 
+// Function to open the front camera
+function openFrontCamera() {
+navigator.mediaDevices.getUserMedia({
+video: {
+facingMode: "user"
+}
+})
+.then((stream) => {
+video.srcObject = stream;
+})
+.catch((err) => {
+console.log("Error: " + err);
+});
+}
+ 
+// Add event listener to the button
+button.addEventListener("click", () => {
+openFrontCamera();
+});
+</script>
+</body>
+ 
+</html>
