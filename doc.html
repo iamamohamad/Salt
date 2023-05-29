@@ -1,56 +1,26 @@
 <!DOCTYPE html>
-<html>
- 
+<html lang="fa">
 <head>
-<title>Webcam Example</title>
-<style>
-#video {
-width: 100%;
-}
-#button {
-padding: 10px;
-background-color: #4CAF50;
-border: none;
-color: white;
-font-size: 16px;
-cursor: pointer;
-border-radius: 5px;
-}
-#button:focus {
-outline: none;
-}
-</style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>ربات پاسخگوی آذرفایل</title>
+<link rel="stylesheet" href="style.css" />
 </head>
- 
 <body>
-<video id="video" autoplay></video>
-<br>
-<button id="button">Open Front Camera</button>
- 
-<script>
-const video = document.getElementById("video");
-const button = document.getElementById("button");
- 
-// Function to open the front camera
-function openFrontCamera() {
-navigator.mediaDevices.getUserMedia({
-video: {
-facingMode: "user"
-}
-})
-.then((stream) => {
-video.srcObject = stream;
-})
-.catch((err) => {
-console.log("Error: " + err);
-});
-}
- 
-// Add event listener to the button
-button.addEventListener("click", () => {
-openFrontCamera();
-});
-</script>
+<div class="chatbot-container">
+<div class="chatbot-header">
+<h2>ربات پاسخگوی آذرفایل</h2>
+</div>
+<div class="chatbot-body">
+<ul class="messages-list"></ul>
+</div>
+</div>
+<div class="input-wrapper-container">
+    <input type="text" class="input-message" placeholder="سوال خود را بپرسید..." />
+    <button class="send-button">ارسال</button>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="script.js"></script>
 </body>
- 
 </html>
