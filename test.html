@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QR Code Scanner</title>
+    <style>
+        #video {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+        }
+        #scan-btn {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>QR Code Scanner</h1>
+    <video id="video" autoplay></video>
+    <br>
+    <button id="open-camera-btn" onclick="openCamera()">Open Camera</button>
+    <button id="scan-btn" onclick="scanQRCode()">Scan</button>
+    <p id="result"></p>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/0.4.1/html5-qrcode.min.js"></script>
+    <script>
+        let scanner;
+        let resultContainer = document.getElementById('result');
+
+        function openCamera() {
+            document.getElementById('open-camera-btn').style.display = 'none';
+            document.getElementById('scan-btn').style.display = 'inline-block';
+            scanner = new Html5Qrcode('video');
+            scanner.start(
+                { facingMode: { exact: 'environment' } },
+                { fps: 10 },
+                qrCodeCallback
+            );
+        }
+
+        function scanQRCode() {
+            scanner.scan();
+        }
+
+        function qrCodeCallback(result) {
+            resultContainer.innerHTML = result;
+        }
+    </script>
+</body>
+</html>
